@@ -47,6 +47,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <!-- <h6 class="collapse-header">Custom Components:</h6> -->
                 <a class="collapse-item" href="<?= base_url("admin/Crumah"); ?>">List Rumah</a>
+                <a class="collapse-item" href="<?= base_url("admin/Crumah/all"); ?>">List Semua Rumah</a>
                 <a class="collapse-item" href="<?= base_url("admin/Crumah/tambah"); ?>">Tambah Rumah</a>
             </div>
         </div>
@@ -75,13 +76,13 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#harga"
             aria-expanded="true" aria-controls="harga">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Kategori Harga</span>
+            <span>Kategori Pendapatan</span>
         </a>
         <div id="harga" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-                <a class="collapse-item" href="<?= base_url("admin/Charga"); ?>">List Kategori Harga</a>
-                <!-- <a class="collapse-item" href="<?= base_url("admin/Cpengeluaran/add_kateg_form"); ?>">Tambah Kategori</a> -->
+                <a class="collapse-item" href="<?= base_url("admin/Charga"); ?>">List Pendapatan</a>
+                <a class="collapse-item" href="<?= base_url("admin/Charga/add_harga"); ?>">Tambah Pendapatan</a>
             </div>
         </div>
     </li>
@@ -108,7 +109,7 @@
                 <!-- <h6 class="collapse-header">Custom Components:</h6> -->
                 <!-- <a class="collapse-item" href="<?= base_url("admin/Charga"); ?>">List harga</a> -->
                 <a class="collapse-item" href="<?= base_url("admin/Cjual"); ?>">Input Penjualan</a>
-                <a class="collapse-item" href="<?= base_url("admin/Crumah/rumah_add_item_harga"); ?>">Tambahkan Harga</a>
+                <a class="collapse-item" href="<?= base_url("admin/Crumah/rumah_add_item_harga"); ?>">Tambahkan Pendapatan</a>
                 <!-- <a class="collapse-item" href="<?= base_url("admin/Charga"); ?>">Tambahkan Harga</a> -->
                 <!-- <a class="collapse-item" href="<?= base_url("admin/Charga/cek_detail_harga"); ?>">Cek Detail Harga</a> -->
             </div>

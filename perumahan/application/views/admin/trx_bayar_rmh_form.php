@@ -76,7 +76,7 @@
 
 
                                         <div class="form-group">
-                                            <label for="jns_harga">Jenis Pembayaran</label>
+                                            <label for="jns_harga">Jenis Uang Masuk</label>
                                             <select class="form-control" id="jns_harga" name="jns_harga" required>
                                                 <option value="">-- Mau Bayar Apa? --</option>
                                             </select>
@@ -102,7 +102,7 @@
                                     <h5 class="m-0 font-weight-bold text-primary">FORM PEMBAYARAN RUMAH</h5>
                                 </div>
                                 <div class="card-body p-4">
-                                    <h5 class="mb-4 font-weight-bold text-primary">Detail Pembayaran</h5>
+                                    <h5 class="mb-4 font-weight-bold text-primary">Detail Pemilik</h5>
 
                                     <table class="table">
 
@@ -117,8 +117,9 @@
                                                 <td class="id_rumah" hidden></td>
                                                 <td class="no_rumah"></td>
                                             </tr>
+
                                             <tr>
-                                                <td>Jenis Harga </td>
+                                                <td>Jenis Uang Masuk </td>
                                                 <td class="id_jns_harga" hidden></td>
                                                 <td class="jenis_harga"></td>
                                             </tr>
@@ -127,13 +128,28 @@
                                                 <td class="nominal"></td>
                                             </tr>
 
+                                            <tr>
+                                                <td>Nama Pemilik </td>
+                                                <td class="id_pemilik" hidden></td>
+                                                <td class="nama_cust"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>No Telp </td>
+                                                <td class="notelp"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> Alamat </td>
+                                                <td class="alamat"></td>
+                                            </tr>
+
                                         </tbody>
                                     </table>
                                     <hr><br>
-                                    <h6>Detail Pembayaran </h6>
+                                    <h5 class="mb-4 font-weight-bold text-primary">Detail Pembayaran</h5>
 
                                     <div class="show_detail_bayar">
-
 
                                     </div>
 
@@ -151,7 +167,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="Keterangan">Keterangan</label>
-                                            <textarea class="form-control" name="keterangan" id="keterangan" placeholder="Contoh: Biaya tukang untuk jasa Naik Dinding rumah Ai Perumahan Bintang Lacita Residence 1" required></textarea>
+                                            <textarea class="form-control" name="keterangan" id="keterangan" placeholder="Contoh: dibayarkan secara Transfer ke rekening 12345678" required></textarea>
                                         </div>
 
                                         <button type="button" class="btn btn-primary btn_submit_pembayaran">Simpan Data</button>
@@ -271,7 +287,7 @@
                             if (data.length > 0) {
                                 // Loop melalui data yang dikembalikan oleh Controller (asumsi data berisi {id, nama_harga})
                                 $.each(data, function(index, item) {
-                                    html += `<option value="${item.id}">${item.jenis}</option>`;
+                                    html += `<option value="${item.id_harga}">${item.nama_harga}</option>`;
                                 });
                                 $('#jns_harga').html(html);
 
@@ -317,8 +333,8 @@
             };
 
             $('.btn_cek_data_pemb').click(function() {
-                let norumah = $('#norumah').val();
                 let id_perumahan = $('#id_perumahan').val(); // Ambil juga ID Perumahan untuk validasi di backend
+                let norumah = $('#norumah').val();
                 let jns_harga = $('#jns_harga').val(); // Ambil juga ID Perumahan untuk validasi di backend
 
                 // Pastikan kedua value sudah terpilih
@@ -334,8 +350,10 @@
                         },
                         // dataType: 'json',/
                         success: function(data) {
-                            // alert("te")
-                            let html = 'Data Kosong';
+
+                            // console.log(data)
+
+                            // let html = 'Data Kosong';
 
                             dt_resp = JSON.parse(data);
 
@@ -346,6 +364,10 @@
                             $('.jenis_harga').text(dt_resp.harga_rumah[0].nama_harga)
                             $('.id_jns_harga').text(dt_resp.harga_rumah[0].id_jns + '|' + dt_resp.harga_rumah[0].nama_harga)
                             $('.nominal').text(dt_resp.harga_rumah[0].nominal.replace(/\B(?=(\d{3})+(?!\d))/g, ','))
+
+                            $('.nama_cust').text(dt_resp.harga_rumah[0].nama_cust)
+                            $('.notelp').text(dt_resp.harga_rumah[0].notelp)
+                            $('.alamat').text(dt_resp.harga_rumah[0].alamat)
 
                             if (dt_resp.terbayar.length > 0) {
                                 // Loop melalui data yang dikembalikan oleh Controller (asumsi data berisi {id, nama_harga})
@@ -383,17 +405,17 @@
                                 });
 
                                 htmlTable += `<tr>
-                                                    
+
                                                     <td colspan="3" class="text-right">Total (B)</td>  
                                                     <td  class="text-right">${total_terbayar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>  
                                                     </tr>
-                                                    
+
                                                     <tr class="font-weight-bold">
-                                                    
+
                                                     <td colspan="3" class="text-right">Sisa (A-B)</td>  
-                                                    <td  class="text-right">${(dt_resp.harga_rumah[0].nominal - total_terbayar).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>  
+                                                    <td  class="text-right nominal_sisa">${(dt_resp.harga_rumah[0].nominal - total_terbayar).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>  
                                                     </tr>
-                                                    
+
                                                     `;
                                 htmlTable += `
                                                     </tbody>
@@ -411,6 +433,7 @@
                             const $formBayar = $('.col.form_bayar');
                             $formBayar.removeAttr('hidden');
 
+                            // $(".form_bayar").removeAttr('hidden');
 
                         },
                         error: function(xhr, status, error) {
@@ -427,12 +450,27 @@
 
             $('.btn_submit_pembayaran').click(function() {
                 bersihnom();
-                let perum = $('.id_perum').text();
-                let rumah = $('.id_rumah').text(); // Ambil juga ID Perumahan untuk textidasi di backend
-                let jns_harga = $('.id_jns_harga').text(); // Ambil juga ID Perumahan untuk validasi di backend
+
+                const pemisah = "|";
+                let perum = $('.id_perum').text().split(pemisah);
+                let rumah = $('.id_rumah').text().split(pemisah); // Ambil juga ID Perumahan untuk textidasi di backend
+                let jns_harga = $('.id_jns_harga').text().split(pemisah); // Ambil juga ID Perumahan untuk validasi di backend
                 let nominal = $('#nominal').val(); // Ambil juga ID Perumahan untuk validasi di backend
                 let keterangan = $('#keterangan').val(); // Ambil juga ID Perumahan untuk validasi di backend
 
+                let sisa = parseFloat($(".nominal_sisa").text().replace(/,/g, ''));
+
+                if (nominal > sisa) {
+                    alert("Pembayaran Lebih besar dari sisa, Cek lagi nominal pembayaran")
+                    $('#nominal').focus(function(e) {
+                        e.preventDefault();
+                    });
+                    $('#nominal').val("");
+                    return;
+                }
+
+                // alert();
+                // return;
                 // Pastikan kedua value sudah terpilih
                 if (perum[0] && rumah[0] && jns_harga[0]) {
                     $.ajax({
@@ -452,7 +490,7 @@
                         // dataType: 'json',/
                         success: function(data) {
 
-                            console.log(data);
+                            // console.log(data);
                             alert("Transaksi Sukses!!");
                             location.reload();
 

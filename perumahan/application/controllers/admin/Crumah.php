@@ -32,10 +32,24 @@ class Crumah extends MY_Admin_Controller
         // $data['title'] = 'Manajemen Akun Keuangan';
         // echo "tes";
         // return;
+        $data["judul"] = "List Rumah";
         $data["list_rumah"] = $this->rmh->getAllRumah()->result_array();
 
         $this->load->view('admin/rumah_list', $data);
     }
+
+    public function all()
+    {
+        // $data['account_list'] = $this->M_account->getAllAccounts();
+        // $data['title'] = 'Manajemen Akun Keuangan';
+        // echo "tes";
+        // return;
+        $data["judul"] = "List Semua Rumah";
+        $data["list_rumah"] = $this->rmh->getAllRumah()->result_array();
+
+        $this->load->view('admin/rumah_list_all', $data);
+    }
+
 
     public function tambah()
     {

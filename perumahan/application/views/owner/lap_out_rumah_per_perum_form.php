@@ -46,12 +46,11 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">LAPORAN PENGELUARAN UMUM PER PERUMAHAN</h6>
-                            <small>Pengeluaran selain untuk rumah</small>
+                            <h6 class="m-0 font-weight-bold text-primary">LAPORAN PENGELUARAN RUMAH PER PERUMAHAN</h6>
                         </div>
                         <div class="card-body p-4">
                             <?= $this->session->flashdata('pesan'); ?>
-                            <form id="formDetailHarga" action="<?= base_url('owner/Claporan/lap_out_umum_per_perum_view'); ?>" method="post">
+                            <form id="formDetailHarga" action="<?= base_url('owner/Claporan/lap_out_rumah_per_perum_view'); ?>" method="post">
 
                                 <div class="form-group">
                                     <label for="id_perumahan">Pilih Perumahan</label>

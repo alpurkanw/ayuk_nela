@@ -15,15 +15,16 @@ class Cbayar extends MY_Admin_Controller
     {
         parent::__construct();
         $this->load->model('M_transaksi', 'trx');
-        // $this->load->model('M_pengeluaran', 'out');
+        // $this->load->model('M_jenis_harga', 'jnsharga');
         $this->load->model('M_rumah', 'rmh');
-        $this->load->model('M_harga_rumah', 'hrg');
+        // $this->load->model('M_harga_rumah', 'hrg');
+        $this->load->model('M_trx_penj_rumah_harga', 'hrg');
     }
 
 
     public function trx_bayar_rmh_form()
     {
-        $data["judul"] = "TRX Pengeluaran";
+        $data["judul"] = "Trx Pembayaran";
         $data['list_perum'] = $this->db->get('tm_perumahan')->result();
         $data["ketegs"] = $this->db->get('tm_jns_harga')->result();
 
@@ -39,13 +40,19 @@ class Cbayar extends MY_Admin_Controller
 
     public function get_harga_perrumah()
     {
+
+        // $data["judul"] = "Trx Pembayaran";
+
         $id_perum = $this->input->post('id_perum');
         $id_rumah = $this->input->post('id_rumah');
+
+
+
 
         // if ($id_perum) {
         // Panggil Model untuk mengambil data rumah
 
-        $harga_rmh = $this->rmh->getAllHarga($id_perum, $id_rumah)->result_array();
+        $harga_rmh = $this->hrg->getAllHargaPerIdrumah($id_perum, $id_rumah)->result_array();
         echo json_encode($harga_rmh);
         // } else {
         //     echo json_encode([]);
@@ -64,7 +71,7 @@ class Cbayar extends MY_Admin_Controller
         // print_r($_POST);
         // return;
 
-        $harga_rmh = $this->rmh->getAllHargaPerId($id_perum, $id_rumah, $id_jenis)->result_array();
+        $harga_rmh = $this->hrg->getAllHargaPerIdJns($id_perum, $id_rumah, $id_jenis)->result_array();
 
         //ambil yang sudah terbayar
 
@@ -115,55 +122,57 @@ class Cbayar extends MY_Admin_Controller
 
 
         // 3. Simpan data ke Model (Asumsi fungsi Model adalah addTrx)
-        $insert = $this->trx->insertTrx($data_transaksi);
+        $this->trx->insertTrx($data_transaksi);
+
+        echo "sukses";
 
         // 4. Beri notifikasi dan redirect
-        if ($insert) {
-            //update master harga rumah disini 
+        // if ($insert) {
+        //     //update master harga rumah disini 
 
 
 
-            // Di dalam Controller Anda
+        //     // Di dalam Controller Anda
 
-            // Asumsi: $nominal, $id_perum, $id_rumah, dan $id_kateg sudah didefinisikan sebelumnya.
+        //     // Asumsi: $nominal, $id_perum, $id_rumah, dan $id_kateg sudah didefinisikan sebelumnya.
 
-            $update = $this->hrg->update_master_harga($nominal, $id_perum, $id_rumah, $id_kateg);
+        //     $update = $this->hrg->update_master_harga($nominal, $id_perum, $id_rumah, $id_kateg);
 
-            // Cek apakah ada baris yang terpengaruh (nilai harus > 0)
-            if ($update > 0) {
-                // KONDISI SUKSES: Ada baris yang berhasil diupdate
-                $pesan_html = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                      Transaksi Pengeluaran sebesar **Rp ' . number_format($nominal) . '** berhasil dicatat!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                   </div>';
-            } else {
-                // KONDISI GAGAL/TIDAK ADA: Tidak ada data yang cocok dengan kriteria WHERE
-                $pesan_html = '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                      Peringatan: Tidak ada data harga rumah yang cocok (ID Perum, ID Rumah, atau Jenis Kategori salah). Data tidak diupdate.
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                   </div>';
-            }
+        //     // Cek apakah ada baris yang terpengaruh (nilai harus > 0)
+        //     if ($update > 0) {
+        //         // KONDISI SUKSES: Ada baris yang berhasil diupdate
+        //         $pesan_html = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        //               Transaksi Pengeluaran sebesar **Rp ' . number_format($nominal) . '** berhasil dicatat!
+        //               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        //                   <span aria-hidden="true">&times;</span>
+        //               </button>
+        //            </div>';
+        //     } else {
+        //         // KONDISI GAGAL/TIDAK ADA: Tidak ada data yang cocok dengan kriteria WHERE
+        //         $pesan_html = '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        //               Peringatan: Tidak ada data harga rumah yang cocok (ID Perum, ID Rumah, atau Jenis Kategori salah). Data tidak diupdate.
+        //               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        //                   <span aria-hidden="true">&times;</span>
+        //               </button>
+        //            </div>';
+        //     }
 
-            // Set flashdata dengan pesan yang sudah ditentukan
-            $this->session->set_flashdata('pesan', $pesan_html);
+        //     // Set flashdata dengan pesan yang sudah ditentukan
+        //     $this->session->set_flashdata('pesan', $pesan_html);
 
-            // Lanjutkan ke redirect atau proses selanjutnya
-            // redirect('halaman_tujuan');
+        //     // Lanjutkan ke redirect atau proses selanjutnya
+        //     // redirect('halaman_tujuan');
 
 
-        } else {
-            // Gagal menyimpan
-            $this->session->set_flashdata(
-                'pesan',
-                '<div class="alert alert-danger">Terjadi kesalahan database saat mencoba menyimpan Transaksi Pengeluaran.</div>'
-            );
-        }
+        // } else {
+        //     // Gagal menyimpan
+        //     $this->session->set_flashdata(
+        //         'pesan',
+        //         '<div class="alert alert-danger">Terjadi kesalahan database saat mencoba menyimpan Transaksi Pengeluaran.</div>'
+        //     );
+        // }
 
-        // Redirect kembali ke form pengeluaran (atau ke halaman list transaksi)
-        redirect('admin/Cpengeluaran/trx_out_rmh_form');
+        // // Redirect kembali ke form pengeluaran (atau ke halaman list transaksi)
+        // redirect('admin/Cpengeluaran/trx_out_rmh_form');
     }
 }

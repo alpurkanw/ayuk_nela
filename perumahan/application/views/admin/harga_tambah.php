@@ -46,7 +46,7 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">FORM TAMBAH KATEGORI HARGA</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">FORM TAMBAH KATEGORI PEMASUKAN</h6>
                         </div>
                         <div class="card-body p-4">
                             <?= $this->session->flashdata('pesan'); ?>
@@ -54,7 +54,7 @@
 
                                 <div class="form-group">
                                     <label for="kategori">Kategori Harga</label>
-                                    <input type="text" class="form-control" id="kategori" name="kategori" placeholder="Masukkan kategori pengeluaran, Contoh : Pembelian pasir atau Pembayaran tukang" required>
+                                    <input type="text" class="form-control" id="kategori" name="kategori" placeholder="Masukkan kategori Pemasukan, Contoh BOOKING FEE, KELEBIHAN TANAH" required>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Simpan Data</button>

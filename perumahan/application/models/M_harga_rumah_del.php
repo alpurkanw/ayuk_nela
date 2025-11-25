@@ -47,23 +47,7 @@ class M_harga_rumah extends CI_Model
         return $this->db->query($sql);
         // return $this->db->query($sql);
     }
-    public function getAllHargaPerIdrumah($id_perum, $id_rumah)
-    {
-        // $this->db->where('id_perum', $id_perum);
-        // $this->db->where('id_rumah', $id_rumah); // Asumsi nama kolom di DB adalah 'norumah'
 
-        // return $this->db->get('tm_harga_rumah');
-
-        $sql = " select a.*, b.*,c.*, d.* from tm_harga_rumah a
-        left join tm_rumah b on b.id = a.id_rumah
-        left join tm_perumahan c on c.id = a.id_perum
-        left join tm_jns_harga d on d.id = a.id_jns
-        where a.id_perum = $id_perum and a.id_rumah = $id_rumah
-        ";
-
-        return $this->db->query($sql);
-        // return $this->db->query($sql);
-    }
 
     public function getAllHargaPerId($id_perum, $id_rumah, $jns_jenis)
     {

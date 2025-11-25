@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title><?= $judul; ?></title>
 
     <!-- Custom fonts for this template -->
     <link href="<?= base_url("assets/adminsb/"); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -53,7 +53,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">LIST RUMAH</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">LIST SEMUA RUMAH</h6>
                         </div>
                         <div class="card-body p-2">
                             <div class="row my-2">
@@ -63,7 +63,7 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="list_semuarumah" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>

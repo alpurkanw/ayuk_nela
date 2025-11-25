@@ -196,7 +196,7 @@ class Laporan extends MY_Admin_Controller
         if ($kategori_id == '0') {
 
             $sql = " 
-                SELECT * from transaksi a
+                SELECT *, a.id id_trans from transaksi a
                 LEFT JOIN accounts b on a.jenis = b.no_account
                 where (tanggal between '$start_date' and '$end_date') and b.category = 'Pengeluaran' order by tanggal
             ";

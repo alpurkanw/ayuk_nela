@@ -99,7 +99,7 @@
                                         </div>
 
 
-                                        <button type="submit" class="btn btn-primary btn_cek_data_pemb">Check Data Pembayaran</button>
+                                        <button type="submit" class="btn btn-primary btn_cek_data_pemb" onclick="return confirm('Periksa kembali Data Customer, sudah benar? ')">Input Penjualan</button>
                                         <a href="#" class="btn btn-secondary">Batal</a>
                                     </form>
                                 </div>

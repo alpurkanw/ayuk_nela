@@ -30,7 +30,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <?php $this->load->view('admin/01_sidebar'); ?>
+        <?php $this->load->view('owner/01_sidebar'); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -38,7 +38,7 @@
             <!-- Main Content -->
             <div id="content">
 
-                <?php $this->load->view('admin/02_topbar');                ?>
+                <?php $this->load->view('owner/02_topbar');                ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -51,11 +51,7 @@
                             href="https://datatables.net">official DataTables documentation</a>.</p> -->
 
                     <!-- DataTales Example -->
-
-                    <a href="#" class="btn mb-2  btn-primary btn_print " target="_blank">
-                        Print</a>
-
-                    <div class="card shadow mb-4 printed_area">
+                    <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">LAPORAN STATUS PENJUALAN RUMAH </h6>
                         </div>
@@ -64,7 +60,7 @@
                             <!-- <h6>Jenis Transaksi : Uang Keluar | Kategori :                            </h6> -->
 
                             <div class="table-responsive">
-                                <table class="table table-sm table-bordered table-striped" role="grid" id="laporanPenjualanKeluar">
+                                <table class="table table-striped table-hover table-bordered" id="laporanPenjualanKeluar">
                                     <thead class="table-dark">
                                         <tr>
                                             <th>No.</th>
@@ -168,57 +164,6 @@
 
     <!-- Page level custom scripts -->
     <script src="<?= base_url("assets/adminsb/"); ?>js/demo/datatables-demo.js"></script>
-
-    <script>
-        $(document).ready(function() {
-
-
-
-            $(".btn_print").click(function() {
-
-                var classToCopy = $(".printed_area").html()
-
-                // Membuka jendela baru dan menambahkan elemen dengan class yang disalin
-                var newWindow = window.open('', '_blank');
-                newWindow.document.write(`<!DOCTYPE html>
-                                            <html>
-
-                                            <head>
-                                                <meta charset="utf-8">
-                                                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                                                <title><?= $judul; ?> </title>
-                                                <!-- Tell the browser to be responsive to screen width -->
-                                                <meta name="viewport" content="width=device-width, initial-scale=1">
-
-                                                <!-- Font Awesome -->
-                                                <link rel="stylesheet" href="<?= base_url("assets/adminlte/") ?>plugins/fontawesome-free/css/all.min.css">
-                                                <!-- Ionicons -->
-                                                <!-- <link rel="stylesheet" href="<?= base_url("assets/adminlte/"); ?>ionicons.min.css"> -->
-                                                <!-- overlayScrollbars -->
-                                                <link rel="stylesheet" href="<?= base_url("assets/adminlte/") ?>dist/css/adminlte.min.css">
-                                                <!-- DataTables -->
-                                                <link rel="stylesheet" href="<?= base_url("assets/adminlte/") ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-                                                <link rel="stylesheet" href="<?= base_url("assets/adminlte/") ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-
-                                                <!-- Google Font: Source Sans Pro -->
-                                                <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-                                            </head>
-
-                                            <body class="hold-transition sidebar-mini">
-                                            <!-- Site wrapper -->
-                                            <div class="wrapper">
-                                            
-                                            `);
-                newWindow.document.write(classToCopy);
-                newWindow.document.write(` </div></body></html>`);
-                newWindow.document.close();
-
-            })
-
-
-
-        });
-    </script>
 
 </body>
 
