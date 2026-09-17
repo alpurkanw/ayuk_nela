@@ -67,10 +67,10 @@
     };
     ?>
     <div id="wrapper">
-        <?php $this->load->view('owner/01_sidebar'); ?>
+        <?php $this->load->view('admin/01_sidebar'); ?>
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                <?php $this->load->view('owner/02_topbar'); ?>
+                <?php $this->load->view('admin/02_topbar'); ?>
                 <div class="container-fluid p-3">
                     <div class="d-sm-flex align-items-center justify-content-between mb-3">
                         <div>

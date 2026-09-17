@@ -53,7 +53,13 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">LAPORAN PENGELUARAN RUMAH PER PERUMAHAN </h6>
+                            <h6 class="m-0 font-weight-bold text-primary">LAPORAN PENGELUARAN PER RUMAH
+                                <br><?= "PERUMAHAN : " . htmlspecialchars(
+                                        (isset($list_rumah[0]) && $list_rumah[0]->nama_perum != "")
+                                            ? $list_rumah[0]->nama_perum
+                                            : "Tidak Ada Data Rumah Terjual"
+                                    ); ?>
+                            </h6>
                         </div>
                         <div class="card-body p-2">
 
@@ -73,7 +79,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Perumahan</th>
-                                            <th>No RUmah </th>
+                                            <th>No Rumah </th>
                                             <th>Total Pengeluaran </th>
                                         </tr>
                                     </thead>

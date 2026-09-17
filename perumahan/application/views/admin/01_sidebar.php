@@ -85,7 +85,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <!-- <h6 class="collapse-header">Custom Components:</h6> -->
                 <a class="collapse-item" href="<?= base_url("admin/Cpengeluaran/list_kateg"); ?>">Kategori Pengeluaran</a>
-                <a class="collapse-item" href="<?= base_url("admin/Cpengeluaran/add_kateg_form"); ?>">Tambah Kategori</a>
+                <!-- <a class="collapse-item" href="<?= base_url("admin/Cpengeluaran/add_kateg_form"); ?>">Tambah Kategori</a> -->
             </div>
         </div>
     </li>

@@ -546,24 +546,43 @@ where b.id_perum = $id_perum order by id_perum, id_rumah";
         $data["judul"] = "Detail Pengeluaran Per Rumah";
         $id_rumah = (int) $this->input->post('id_rumah');
 
+        if (!$id_rumah) {
+            redirect('admin/Claporan/lap_out_total_perumah_form');
+            return;
+        }
+
         $info_sql = "SELECT r.id AS id_rumah, r.norumah, p.nama AS nama_perum
                      FROM tm_rumah r
                      LEFT JOIN tm_perumahan p ON p.id = r.id_perumahan
                      WHERE r.id = ?";
         $data['rumah_info'] = $this->db->query($info_sql, [$id_rumah])->row();
+        if (!$data['rumah_info']) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-warning">Data rumah tidak ditemukan.</div>');
+            redirect('admin/Claporan/lap_out_total_perumah_form');
+            return;
+        }
+
         $data['id_rumah'] = $id_rumah;
         $data['report_date'] = date('d-m-Y');
 
-        $sql = "SELECT k.id AS id_kateg, k.kateg AS nama_kateg, COALESCE(SUM(t.nominal), 0) AS total_pengeluaran
-                FROM tm_kategori_pengeluaran k
-                LEFT JOIN trx_transaksi t ON t.id_kateg = k.id
-                    AND t.tipe_transaksi = 'keluar'
+        $sql = "SELECT k.id AS id_kateg, k.kateg AS nama_kateg, SUM(t.nominal) AS total_pengeluaran
+                FROM trx_transaksi t
+                INNER JOIN tm_kategori_pengeluaran k ON k.id = t.id_kateg
+                WHERE t.tipe_transaksi = 'keluar'
                     AND t.peruntukan = 'rumah'
                     AND t.id_rumah = ?
                 GROUP BY k.id, k.kateg
+                HAVING SUM(t.nominal) > 0
                 ORDER BY k.kateg";
 
         $data['list_rumah'] = $this->db->query($sql, [$id_rumah])->result();
+
+        if (empty($data['list_rumah'])) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-info">Tidak ada pengeluaran dengan peruntukan rumah untuk rumah ini.</div>');
+            redirect('admin/Claporan/lap_out_total_perumah_form');
+            return;
+        }
+
         $this->load->view('admin/lap_out_total_perumah_view', $data);
     }
 

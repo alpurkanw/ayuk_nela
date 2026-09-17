@@ -46,6 +46,7 @@ class Cpengeluaran extends MY_Admin_Controller
             // Jika validasi berhasil, siapkan data untuk disimpan
             $data = [
                 'kateg' => $this->input->post('kategori'),
+                'jenis' => 'umum',
             ];
 
             $insert = $this->kateg->addKategori($data);

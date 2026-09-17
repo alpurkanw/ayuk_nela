@@ -133,6 +133,93 @@
                         Print</a>
 
 
+                    <div class="row">
+                        <div class="col">
+                            <h5>LAPORAN HUTANG CUSTOMER</h5>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Total Tumah</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800 tot_rumah"></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-home fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total Pemdapatan</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800 tot_pendapatan"></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total Pembayaran</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800 tot_terbayar"></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Total Sisa </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800 tot_sisa"></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <a href="#" class="btn mb-2  btn-primary btn_print " target="_blank">
+                        Print</a>
+
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4 printed_area">
                         <div class="card-header py-3">
@@ -234,27 +321,29 @@
     </div>
     <!-- End of Page Wrapper -->
 
+    <<<<<<< Updated upstream=======>>>>>>> Stashed changes
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="<?= base_url("assets/adminsb/"); ?>vendor/jquery/jquery.min.js"></script>
-    <script src="<?= base_url("assets/adminsb/"); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="<?= base_url("assets/adminsb/"); ?>vendor/jquery/jquery.min.js"></script>
+        <script src="<?= base_url("assets/adminsb/"); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="<?= base_url("assets/adminsb/"); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="<?= base_url("assets/adminsb/"); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="<?= base_url("assets/adminsb/"); ?>js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="<?= base_url("assets/adminsb/"); ?>js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="<?= base_url("assets/adminsb/"); ?>vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?= base_url("assets/adminsb/"); ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="<?= base_url("assets/adminsb/"); ?>vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="<?= base_url("assets/adminsb/"); ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="<?= base_url("assets/adminsb/"); ?>js/demo/datatables-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="<?= base_url("assets/adminsb/"); ?>js/demo/datatables-demo.js"></script>
 
 
-    <script>
-        $(document).ready(function() {
+        <<<<<<< Updated upstream
+            <script>
+            $(document).ready(function() {
 
             $(".tot_rumah").text("<?= $no . ' Tagihan'; ?>");
             $(".tot_pendapatan").text("Rp " + "<?= number_format($total_nominal); ?>");
@@ -263,36 +352,47 @@
 
             // Handle row click untuk membuka detail
             $(document).on('click', '.row-clickable', function() {
-                var id = $(this).data('id');
-                window.location.href = '<?= base_url('owner/claporan/lap_hutang_cust_detail'); ?>/' + id;
+            var id = $(this).data('id');
+            window.location.href = '<?= base_url('owner/claporan/lap_hutang_cust_detail'); ?>/' + id;
             });
 
             // Ubah cursor menjadi pointer saat hover
             $('.row-clickable').css('cursor', 'pointer');
             $('.row-clickable').hover(
-                function() {
-                    $(this).css('background-color', '#f0f0f0');
-                },
-                function() {
-                    $(this).css('background-color', '');
-                }
+            function() {
+            $(this).css('background-color', '#f0f0f0');
+            },
+            function() {
+            $(this).css('background-color', '');
+            }
             );
-        })
-    </script>
+            =======
+
+            <script>
+                $(document).ready(function() {
+
+                    $(".tot_rumah").text("<?= $no . ' Rumah'; ?>");
+                    $(".tot_pendapatan").text("Rp " + "<?= number_format($total_nominal); ?>");
+                    $(".tot_terbayar").text("Rp " + "<?= number_format($total_terbayar); ?>");
+                    $(".tot_sisa").text("Rp " + "<?= number_format($total_sisa); ?>"); >>>
+                    >>>
+                    > Stashed changes
+                })
+            </script>
 
 
-    <script>
-        $(document).ready(function() {
+            <script>
+                $(document).ready(function() {
 
 
 
-            $(".btn_print").click(function() {
+                        $(".btn_print").click(function() {
 
-                var classToCopy = $(".printed_area").html()
+                            var classToCopy = $(".printed_area").html()
 
-                // Membuka jendela baru dan menambahkan elemen dengan class yang disalin
-                var newWindow = window.open('', '_blank');
-                newWindow.document.write(`<!DOCTYPE html>
+                            // Membuka jendela baru dan menambahkan elemen dengan class yang disalin
+                            var newWindow = window.open('', '_blank');
+                            newWindow.document.write(`<!DOCTYPE html>
                                             <html>
 
                                             <head>
@@ -305,7 +405,6 @@
 
                                                 <title><?= $judul; ?> ?></title>
 <link rel="icon" type="image/png" href="<?= base_url('assets/images/favicon_04.png') ?>">
-
 
                                                 <!-- Custom fonts for this template -->
                                                 <link href="<?= base_url("assets/adminsb/"); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -325,10 +424,10 @@
                                             <div class="wrapper">
                                             
                                             `);
-                newWindow.document.write(classToCopy);
+                            newWindow.document.write(classToCopy);
 
 
-                newWindow.document.write(`<!DOCTYPE html>
+                            newWindow.document.write(`<!DOCTYPE html>
                                             <html>
 
                                             <head>
@@ -341,7 +440,6 @@
 
                                                 <title><?= $judul; ?> ?></title>
 <link rel="icon" type="image/png" href="<?= base_url('assets/images/favicon_04.png') ?>">
-
 
                                                 <!-- Custom fonts for this template -->
                                                 <link href="<?= base_url("assets/adminsb/"); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -363,14 +461,26 @@
                                             `);
 
 
-                newWindow.document.write(` </div></body></html>`);
-                newWindow.document.close();
-            });
+                            <<
+                            <<
+                            << < Updated upstream
+                            newWindow.document.write(` </div></body></html>`);
+                            newWindow.document.close();
+                        }); ===
+                        ===
+                        =
+
+                        newWindow.document.write(` </div></body></html>`);
+                        newWindow.document.close();
+
+                    }) >>>
+                    >>>
+                    > Stashed changes
 
 
 
-        });
-    </script>
+                });
+            </script>
 </body>
 
 </html>

@@ -25,10 +25,16 @@ class M_trx_penj_rumah_harga extends CI_Model
     {
 
         $sql = "
-                    SELECT b.id, a.nama_perum, a.norumah, a.nama_cust, b.nama_harga kategori_dp, b.nominal, (SELECT sum(nominal) terbayar  FROM `trx_transaksi` where tipe_transaksi = 'masuk' and id_perum = a.id_perum and id_rumah = a.id_rumah and id_kateg = b.id_jns) nom_terbayar  
+                    SELECT b.id, a.nama_perum, a.norumah, a.nama_cust, b.nama_harga kategori_dp, b.nominal,
+                           (SELECT SUM(nominal) terbayar
+                            FROM `trx_transaksi`
+                            WHERE tipe_transaksi = 'masuk'
+                              AND id_perum = a.id_perum
+                              AND id_rumah = a.id_rumah
+                              AND id_kateg = b.id_jns) nom_terbayar
                     FROM trx_penj_rumah a
-                    left join trx_penj_rumah_harga b on b.id_penj_rumah = a.id
-                    where id_perum = $id_perumahan
+                    LEFT JOIN trx_penj_rumah_harga b ON b.id_penj_rumah = a.id
+                    WHERE id_perum = $id_perumahan
                     ORDER BY a.nama_perum ASC, a.norumah ASC, a.id ASC
         ";
 
@@ -43,8 +49,6 @@ class M_trx_penj_rumah_harga extends CI_Model
         // echo $id_rumah;
         // return;
 
-
-
         $sql = "SELECT a.*, b.*, a.id AS id_harga,
                        COALESCE((SELECT SUM(nominal)
                                  FROM trx_transaksi
@@ -58,7 +62,6 @@ class M_trx_penj_rumah_harga extends CI_Model
                   AND b.id_rumah = ?
         ";
         return $this->db->query($sql, [$id_perum, $id_rumah]);
-        // return $this->db->query($sql);
     }
 
     public function getListPendapatan($id_perum, $id_rumah)

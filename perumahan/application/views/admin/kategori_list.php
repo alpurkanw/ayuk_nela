@@ -67,6 +67,7 @@
                                         <tr>
                                             <th>id</th>
                                             <th>ket</th>
+                                            <th>jenis</th>
                                         </tr>
                                     </thead>
 
@@ -79,6 +80,7 @@
                                                 <tr>
                                                     <td><?= $no++; ?></td>
                                                     <td><?= $data["kateg"]; ?></td>
+                                                    <td><?= isset($data["jenis"]) ? ucfirst($data["jenis"]) : 'Umum'; ?></td>
 
                                                 </tr>
                                             <?php endforeach; ?>
