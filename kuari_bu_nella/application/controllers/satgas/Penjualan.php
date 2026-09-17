@@ -77,7 +77,7 @@ class Penjualan extends MY_Satgas_Controller
             if ($insert_id) {
                 // Jika berhasil disimpan
                 $this->session->set_flashdata('pesan_sukses', 'Data penjualan berhasil disimpan dengan ID: ' . $insert_id);
-                redirect('satgas/penjualan/sukses/' . $insert_id); // Arahkan ke halaman sukses atau daftar transaksi
+                redirect('Public_funct/print_nota/' . $insert_id); // Arahkan ke halaman sukses atau daftar transaksi
             } else {
                 // Jika gagal disimpan
                 $this->session->set_flashdata('pesan_error', 'Gagal menyimpan data penjualan. Silakan coba lagi.');
@@ -86,29 +86,29 @@ class Penjualan extends MY_Satgas_Controller
         }
     }
 
-    public function sukses($id)
-    {
-        // Halaman ini bisa menampilkan pesan sukses atau daftar transaksi terbaru
-        $data['title'] = 'Transaksi Berhasil';
+    // public function sukses($id)
+    // {
+    //     // Halaman ini bisa menampilkan pesan sukses atau daftar transaksi terbaru
+    //     $data['title'] = 'Transaksi Berhasil';
 
 
-        $sql = " 
-                SELECT * from transaksi_penjualan_material a
-                LEFT JOIN sopir b on a.id_sopir = b.id_sopir
-                LEFT JOIN materials c on a.id_material = c.id_material
-                where id_transaksi = $id
-            ";
-
-
-
-        // echo $sql;
-        // return;
-        $data["trx"] =  $this->db->query($sql)->result();
+    //     $sql = " 
+    //             SELECT * from transaksi_penjualan_material a
+    //             LEFT JOIN sopir b on a.id_sopir = b.id_sopir
+    //             LEFT JOIN materials c on a.id_material = c.id_material
+    //             where id_transaksi = $id
+    //         ";
 
 
 
-        $this->load->view('satgas/trx_sukses', $data); // Sesuaikan path view Anda
-    }
+    //     // echo $sql;
+    //     // return;
+    //     $data["trx"] =  $this->db->query($sql)->result();
+
+
+
+    //     $this->load->view('satgas/trx_sukses', $data); // Sesuaikan path view Anda
+    // }
 }
 
 

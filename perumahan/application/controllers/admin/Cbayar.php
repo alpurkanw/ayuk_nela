@@ -38,7 +38,7 @@ class Cbayar extends MY_Admin_Controller
         $this->load->view('admin/trx_bayar_rmh_form', $data);
     }
 
-    public function get_harga_perrumah()
+    public function get_harga_perrumah_terjual()
     {
 
         // $data["judul"] = "Trx Pembayaran";
@@ -46,13 +46,14 @@ class Cbayar extends MY_Admin_Controller
         $id_perum = $this->input->post('id_perum');
         $id_rumah = $this->input->post('id_rumah');
 
-
+        // print_r($_POST);
+        // return;
 
 
         // if ($id_perum) {
         // Panggil Model untuk mengambil data rumah
 
-        $harga_rmh = $this->hrg->getAllHargaPerIdrumah($id_perum, $id_rumah)->result_array();
+        $harga_rmh = $this->hrg->getListPendapatan($id_perum, $id_rumah)->result_array();
         echo json_encode($harga_rmh);
         // } else {
         //     echo json_encode([]);
@@ -67,12 +68,13 @@ class Cbayar extends MY_Admin_Controller
         $id_jenis     = $this->input->post('id_jenis');
 
         // 2. Siapkan data untuk tabel trx_transaksi
-        // echo 'tes' . '-' . $id_perumahan . '-' . $id_rumah . '-' . $id_jenis;
+        // echo $id_perum . '-' . $id_rumah . '-' . $id_jenis;
         // print_r($_POST);
         // return;
 
         $harga_rmh = $this->hrg->getAllHargaPerIdJns($id_perum, $id_rumah, $id_jenis)->result_array();
 
+        // 1-10-2
         //ambil yang sudah terbayar
 
 

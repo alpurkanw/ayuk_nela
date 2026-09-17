@@ -131,8 +131,9 @@ class Dashboard extends MY_Owner_Controller
         // return;
 
         ($this->input->post("bulan") !== null) ? $thismonth = $this->input->post("bulan") : $thismonth = date('Y-m');
-        $tahun = date('Y');
-
+        $tahun = substr($thismonth, 0, 4);
+        // echo $tahun;
+        // return;
 
         // uang masuk dan keluar
         $sql = " select * from (

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>Bintang Lacita Group</title>
 
     <!-- Custom fonts for this template -->
     <link href="<?= base_url("assets/adminsb/"); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,7 +30,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <?php $this->load->view('owner/01_sidebar'); ?>
+        <?php $this->load->view('admin/01_sidebar'); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -38,7 +38,7 @@
             <!-- Main Content -->
             <div id="content">
 
-                <?php $this->load->view('owner/02_topbar');                ?>
+                <?php $this->load->view('admin/02_topbar');                ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -51,7 +51,7 @@
                         </div>
                         <div class="card-body p-4">
                             <?= $this->session->flashdata('pesan'); ?>
-                            <form id="formDetailHarga" action="<?= base_url('owner/Claporan/lap_out_umum_per_perum_view'); ?>" method="post">
+                            <form id="formDetailHarga" action="<?= base_url('admin/Claporan/lap_out_umum_per_perum_view'); ?>" method="post">
 
                                 <div class="form-group">
                                     <label for="id_perumahan">Pilih Perumahan</label>

@@ -164,35 +164,60 @@ class Crumah extends MY_Admin_Controller
         $id_jual = $this->input->post('id_jual');
         $id_jenis = explode("|", $this->input->post('id_jenis')); // ID Kategori Pengeluaran
 
+        // print_r($_POST);
+        // return;
+        //cek dulu sudah ada belum harga itu 
+
+        $sql = " SELECT  *  FROM trx_penj_rumah_harga a
+               where id_jns = $id_jenis[0] and id_penj_rumah = $id_jual
+        ";
+        // echo $sql;
+        // return;
 
 
-        $dataharga = array(
-            'id_penj_rumah'       => $id_jual,
-            'id_jns'       => $id_jenis[0],
-            'nama_harga'       => $id_jenis[1],
-            'nominal'       => $nominal
-        );
+        // jika sudahh ada data pendapatan nya maka nya tidak akan ditambahkana
+        $data_rows =  $this->db->query($sql)->result_array();
+        // echo "tes:" . (int)$data_rows;
+        // return;
+        if (count($data_rows) == 0) {
 
-        // 3. Simpan data ke Model (Asumsi fungsi Model adalah addTrx)
-        $insert = $this->harga->addharga($dataharga);
-
-        // 4. Beri notifikasi dan redirect
-        if ($insert) {
-
-            $this->session->set_flashdata(
-                'pesan',
-                '<div class="alert alert-success">Penambahan Harga  Berhasil Diinput </div>'
+            $dataharga = array(
+                'id_penj_rumah'       => $id_jual,
+                'id_jns'       => $id_jenis[0],
+                'nama_harga'       => $id_jenis[1],
+                'nominal'       => $nominal
             );
+
+            // 3. Simpan data ke Model (Asumsi fungsi Model adalah addTrx)
+            $insert = $this->harga->addharga($dataharga);
+
+            // 4. Beri notifikasi dan redirect
+            if ($insert) {
+
+                $this->session->set_flashdata(
+                    'pesan',
+                    '<div class="alert alert-success">Penambahan Harga  Berhasil Diinput </div>'
+                );
+            } else {
+                // Gagal menyimpan
+                $this->session->set_flashdata(
+                    'pesan',
+                    '<div class="alert alert-danger">Penambahan Harga Gagal Diinput !!! </div>'
+                );
+            }
+
+            // Redirect kembali ke form pengeluaran (atau ke halaman list transaksi)
+            redirect('admin/Crumah/rumah_add_item_harga');
         } else {
-            // Gagal menyimpan
+
             $this->session->set_flashdata(
                 'pesan',
-                '<div class="alert alert-danger">Penambahan Harga Gagal Diinput !!! </div>'
+                '<div class="alert alert-danger">Penambahan Harga  GAGAL Diinput, Data Pendapatan(DP) sudah pernah ditambahkan </div>'
             );
-        }
 
-        // Redirect kembali ke form pengeluaran (atau ke halaman list transaksi)
-        redirect('admin/Crumah/rumah_add_item_harga');
+            // Redirect kembali ke form pengeluaran (atau ke halaman list transaksi)
+            redirect('admin/Crumah/rumah_add_item_harga');
+        }
     }
 
     public function getListHarga($id_perum, $id_rumah)

@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>Bintang Lacita Group</title>
+    <link rel="icon" type="image/png" href="<?= base_url('assets/images/favicon_04.png') ?>">
 
     <!-- Custom fonts for this template -->
     <link href="<?= base_url("assets/adminsb/"); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

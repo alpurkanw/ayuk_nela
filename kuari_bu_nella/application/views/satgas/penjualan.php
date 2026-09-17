@@ -75,7 +75,7 @@
                         <label for="tujuanPengangkutan" class="form-label">Tujuan Pengangkutan</label>
                         <textarea class="form-control" id="tujuanPengangkutan" name="tujuanPengangkutan" rows="3" placeholder="Masukkan alamat tujuan pengangkutan" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-success w-100">Simpan Penjualan</button>
+                    <button type="submit" class="btn btn-success w-100" onclick="return confirm('Check Kembali Data Transaksi, Sudah Benarkah?')">Simpan Penjualan</button>
                 </form>
             </div>
         </div>

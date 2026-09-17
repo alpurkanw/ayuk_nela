@@ -23,6 +23,7 @@ class M_rumah extends CI_Model
         // return $this->db->get($this->table)->result_array();
         $sql = " select a.id id_rumah, b.id id_perum, a.*, b.* from tm_rumah a
         left join tm_perumahan b on b.id = a.id_perumahan
+        order by b.nama asc, a.norumah asc
         ";
 
         return $this->db->query($sql);
@@ -101,6 +102,7 @@ class M_rumah extends CI_Model
 
         $sql = " select * from tm_rumah 
         where id_perumahan=$id_perumahan
+        order by norumah asc
         ";
 
         return $this->db->query($sql);
@@ -117,6 +119,7 @@ class M_rumah extends CI_Model
 
         $sql = " select * from tm_rumah 
         where id_perumahan=$id_perumahan and id not in (select id_rumah from trx_penj_rumah where id_perum = $id_perumahan )
+        order by norumah asc
         ";
 
         return $this->db->query($sql);
@@ -133,6 +136,7 @@ class M_rumah extends CI_Model
                 LEFT JOIN trx_penj_rumah b on b.id_rumah = a.id 
                 LEFT JOIN tm_perumahan c on c.id = a.id_perumahan
                 where id_perumahan = $id_perumahan
+                order by a.norumah asc
 
         ";
 
@@ -144,7 +148,7 @@ class M_rumah extends CI_Model
     {
 
         $sql = " select * from trx_penj_rumah 
-        where id_perum=$id_perumahan 
+        where id_perum=$id_perumahan order by id
         ";
 
         return $this->db->query($sql);

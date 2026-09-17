@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>Bintang Lacita Group</title>
 
     <!-- Custom fonts for this template -->
     <link href="<?= base_url("assets/adminsb/"); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -56,16 +56,22 @@
                         Print</a>
 
                     <div class="card shadow mb-4 printed_area">
-                        <div class="card-header py-3">
+                        <div class="card-header px-2 py-3">
                             <h6 class="m-0 font-weight-bold text-primary">LAPORAN STATUS PENJUALAN RUMAH </h6>
                         </div>
                         <div class="card-body p-2">
-
+                            <?php
+                            $terjual = 0;
+                            foreach ($list_rumah as $data) : ($data->nama_cust) ? $terjual++ : $terjual;
+                            endforeach; ?>
                             <!-- <h6>Jenis Transaksi : Uang Keluar | Kategori :                            </h6> -->
+                            <h5>
+                                <span class="badge badge-primary">Nama Perumahan : <?= $list_rumah[0]->nama_perum; ?></span> <span class="badge badge-primary">Total Perumahan : <?= count($list_rumah); ?> Unit</span> <span class="badge badge-primary">Terjual : <?= $terjual; ?> Unit</span>
+                            </h5>
 
                             <div class="table-responsive">
                                 <table class="table table-sm table-bordered table-striped" role="grid" id="laporanPenjualanKeluar">
-                                    <thead class="table-dark">
+                                    <thead class="table-primary">
                                         <tr>
                                             <th>No.</th>
                                             <th>Perumahan</th>
@@ -90,7 +96,6 @@
                                                     <td>Rp <?= number_format($data->harga_jual); ?></td>
                                                     <td><?= ($data->nama_cust) ? $data->nama_cust : ''; ?> </td>
                                                     <td><?= ($data->nama_cust) ? '<h1-6><span class="badge badge-primary">Sudah Terjual</span></h1-6>' : '<h1-6><span class="badge badge-warning">Belum Terjual</span></h1-6>'; ?> </td>
-
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php else : ?>
@@ -184,32 +189,70 @@
                                             <html>
 
                                             <head>
+
                                                 <meta charset="utf-8">
                                                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                                                <title><?= $judul; ?> </title>
-                                                <!-- Tell the browser to be responsive to screen width -->
-                                                <meta name="viewport" content="width=device-width, initial-scale=1">
+                                                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                                                <meta name="description" content="">
+                                                <meta name="author" content="">
 
-                                                <!-- Font Awesome -->
-                                                <link rel="stylesheet" href="<?= base_url("assets/adminlte/") ?>plugins/fontawesome-free/css/all.min.css">
-                                                <!-- Ionicons -->
-                                                <!-- <link rel="stylesheet" href="<?= base_url("assets/adminlte/"); ?>ionicons.min.css"> -->
-                                                <!-- overlayScrollbars -->
-                                                <link rel="stylesheet" href="<?= base_url("assets/adminlte/") ?>dist/css/adminlte.min.css">
-                                                <!-- DataTables -->
-                                                <link rel="stylesheet" href="<?= base_url("assets/adminlte/") ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-                                                <link rel="stylesheet" href="<?= base_url("assets/adminlte/") ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+                                                <title><?= $judul; ?> ?></title>
 
-                                                <!-- Google Font: Source Sans Pro -->
-                                                <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+                                                <!-- Custom fonts for this template -->
+                                                <link href="<?= base_url("assets/adminsb/"); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+                                                <link
+                                                    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+                                                    rel="stylesheet">
+
+                                                <!-- Custom styles for this template -->
+                                                <link href="<?= base_url("assets/adminsb/"); ?>css/sb-admin-2.min.css" rel="stylesheet">
+
+                                                <!-- Custom styles for this page -->
+                                                <link href="<?= base_url("assets/adminsb/"); ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
                                             </head>
-
                                             <body class="hold-transition sidebar-mini">
                                             <!-- Site wrapper -->
                                             <div class="wrapper">
                                             
                                             `);
                 newWindow.document.write(classToCopy);
+
+
+                newWindow.document.write(`<!DOCTYPE html>
+                                            <html>
+
+                                            <head>
+
+                                                <meta charset="utf-8">
+                                                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                                                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                                                <meta name="description" content="">
+                                                <meta name="author" content="">
+
+                                                <title><?= $judul; ?> ?></title>
+
+                                                <!-- Custom fonts for this template -->
+                                                <link href="<?= base_url("assets/adminsb/"); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+                                                <link
+                                                    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+                                                    rel="stylesheet">
+
+                                                <!-- Custom styles for this template -->
+                                                <link href="<?= base_url("assets/adminsb/"); ?>css/sb-admin-2.min.css" rel="stylesheet">
+
+                                                <!-- Custom styles for this page -->
+                                                <link href="<?= base_url("assets/adminsb/"); ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+                                            </head>
+                                            <body class="hold-transition sidebar-mini">
+                                            <!-- Site wrapper -->
+                                            <div class="wrapper">
+                                            
+                                            `);
+
+
+
                 newWindow.document.write(` </div></body></html>`);
                 newWindow.document.close();
 

@@ -13,11 +13,31 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        TABEL MASTER
+        DASHBOARD
     </div>
     <!-- Divider -->
     <hr class="sidebar-divider">
 
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dashboard"
+            aria-expanded="true" aria-controls="dashboard">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Dashboard</span>
+        </a>
+        <div id="dashboard" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="<?= base_url("admin/Cdashboard/per_perumahan"); ?>">Dashboard Per Perumahan</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        TABEL MASTER
+    </div>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
 
 
@@ -157,6 +177,14 @@
 
 
     <!-- Nav Item - Tables -->
+
+    <li class="nav-item ">
+        <a class="nav-link" href="<?= base_url("admin/Claporan/lap_list_dp"); ?>">
+            <i class="fas fa-fw fa-table"></i>
+            <span>List Pendapatan(DP)</span></a>
+    </li>
+
+
     <li class="nav-item ">
         <a class="nav-link" href="<?= base_url("admin/Claporan/lap_st_rumah_per_perum_form"); ?>">
             <i class="fas fa-fw fa-table"></i>
@@ -178,12 +206,26 @@
         <div id="lap_keluar" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-                <a class="collapse-item" href="<?= base_url("admin/Claporan/lap_out_rumah_per_perum_form"); ?>">Rumah Per Perum</a>
+                <a class="collapse-item" href="<?= base_url("admin/Claporan/lap_out_per_perumahan"); ?>">UMUM Per Perumahan</a>
+                <a class="collapse-item" href="<?= base_url("admin/Claporan/lap_out_rumah_per_perumahan"); ?>">RUMAH Per Perumahan</a>
+                <!-- <a class="collapse-item" href="<?= base_url("admin/Claporan/lap_out_per_perumahan"); ?>">RUMAH Per Perumahan</a> -->
+                <!-- <a class="collapse-item" href="<?= base_url("admin/Claporan/lap_out_per_perumahan"); ?>">Per Perumahan</a> -->
+                <a class="collapse-item" href="<?= base_url("admin/Claporan/lap_out_rumah_per_perum_form"); ?>">Per Rumah</a>
+                <a class="collapse-item" href="<?= base_url("admin/Claporan/lap_out_total_perumah_form"); ?>">Detail Per Rumah</a>
+                <div class="dropdown-divider"></div>
                 <a class="collapse-item" href="<?= base_url("admin/Claporan/lap_out_umum_per_perum_form"); ?>">Pengeluaran Umum</a>
                 <!-- <a class="collapse-item" href="cards.html">Pengeluaran Umum</a> -->
             </div>
         </div>
     </li>
+
+
+    <li class="nav-item ">
+        <a class="nav-link" href="<?= base_url("admin/Claporan/lap_laba_rugi_form"); ?>">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Lap Laba Rugi</span></a>
+    </li>
+
 
 
     <!-- Divider -->
@@ -208,3 +250,4 @@
 
 </ul>
 <!-- End of Sidebar -->
+<link rel="icon" type="image/png" href="<?= base_url('assets/images/favicon_04.png') ?>">

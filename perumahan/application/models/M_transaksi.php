@@ -48,6 +48,7 @@ class M_transaksi extends CI_Model
                 LEFT JOIN tm_perumahan c on c.id = a.id_perumahan
                 where  a.id_perumahan=$id_perum
                 group by a.id, a.id_perumahan
+                order by c.nama asc, a.norumah asc
         ";
 
         return $this->db->query($sql);
@@ -55,14 +56,71 @@ class M_transaksi extends CI_Model
     }
     public function get_nom_out_umum_per_perum($id_perum)
     {
+        $sql = "SELECT id_kateg, nama_kateg,
+                       SUM(nominal) AS total_pengeluaran,
+                       MIN(tanggal) AS tanggal_awal_kateg,
+                       MAX(tanggal) AS tanggal_akhir_kateg
+                FROM trx_transaksi
+                WHERE tipe_transaksi = 'keluar'
+                    AND peruntukan = 'umum'
+                    AND id_perum = ?
+                GROUP BY id_kateg, nama_kateg
+                ORDER BY nama_kateg";
 
-        $sql = "SELECT   *,sum(nominal) total_pengeluaran FROM `trx_transaksi`
-                where tipe_transaksi='keluar' and peruntukan ='umum' and id_perum= $id_perum
-                GROUP BY id_kateg
-        ";
+        return $this->db->query($sql, [$id_perum]);
+    }
 
-        return $this->db->query($sql);
-        // return $this->db->query($sql);
+    public function get_detail_out_rumah_per_perumahan($id_perum)
+    {
+        $sql = "SELECT id_perum, id_kateg, nama_kateg,
+                       SUM(nominal) AS total_pengeluaran
+                FROM trx_transaksi
+                WHERE tipe_transaksi = 'keluar'
+                    AND peruntukan = 'rumah'
+                    AND id_perum = ?
+                GROUP BY id_perum, id_kateg, nama_kateg
+                ORDER BY nama_kateg";
+
+        return $this->db->query($sql, [$id_perum]);
+    }
+
+    public function get_range_out_umum_per_perum($id_perum)
+    {
+        $sql = "SELECT MIN(tanggal) AS tanggal_awal,
+                       MAX(tanggal) AS tanggal_akhir,
+                       COALESCE(SUM(nominal), 0) AS total_pengeluaran
+                FROM trx_transaksi
+                WHERE tipe_transaksi = 'keluar'
+                    AND peruntukan = 'umum'
+                    AND id_perum = ?";
+
+        return $this->db->query($sql, [$id_perum]);
+    }
+
+    public function get_detail_out_umum_per_perum($id_perum, $id_kateg)
+    {
+        $sql = "SELECT tanggal, keterangan, nominal
+                FROM trx_transaksi
+                WHERE tipe_transaksi = 'keluar'
+                    AND peruntukan = 'umum'
+                    AND id_perum = ?
+                    AND id_kateg = ?
+                ORDER BY tanggal";
+
+        return $this->db->query($sql, [$id_perum, $id_kateg]);
+    }
+
+    public function get_detail_out_umum_perum_all($id_perum)
+    {
+        $sql = "SELECT id_kateg, nama_kateg, SUM(nominal) AS total_pengeluaran
+                FROM trx_transaksi
+                WHERE tipe_transaksi = 'keluar'
+                    AND peruntukan = 'umum'
+                    AND id_perum = ?
+                GROUP BY id_kateg, nama_kateg
+                ORDER BY nama_kateg";
+
+        return $this->db->query($sql, [$id_perum]);
     }
 
 

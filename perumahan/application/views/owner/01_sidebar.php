@@ -24,11 +24,7 @@
         </a>
         <div id="dashboard" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-                <a class="collapse-item" href="<?= base_url("owner/Cdashboard/akupansi"); ?>">Akupansi Penjualan</a>
-                <a class="collapse-item" href="<?= base_url("owner/Cdashboard/pengeluaran"); ?>">Pengeluaran</a>
-                <!-- <a class="collapse-item" href="<?= base_url("owner/Claporan/lap_out_umum_per_perum_form"); ?>">Pengeluaran Umum</a> -->
-                <!-- <a class="collapse-item" href="cards.html">Pengeluaran Umum</a> -->
+                <a class="collapse-item" href="<?= base_url("owner/Cdashboard/per_perumahan"); ?>">Dashboard Per Perumahan</a>
             </div>
         </div>
     </li>
@@ -53,11 +49,31 @@
             <span>Status Rumah</span></a>
     </li>
     <li class="nav-item ">
+        <a class="nav-link" href="<?= base_url("owner/Claporan/lap_list_dp"); ?>">
+            <i class="fas fa-fw fa-table"></i>
+            <span>List Pendapatan(DP)</span></a>
+    </li>
+    <li class="nav-item ">
         <a class="nav-link" href="<?= base_url("owner/Claporan/lap_hutang_cust_form"); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Lap Hutang Customer</span></a>
     </li>
 
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#lap_penjualan"
+            aria-expanded="true" aria-controls="lap_penjualan">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Laporan Penjualan</span>
+        </a>
+        <div id="lap_penjualan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+                <a class="collapse-item" href="<?= base_url("owner/Claporan/lap_penjualan_per_perumahan"); ?>">Total per Perumahan</a>
+                <!-- <a class="collapse-item" href="<?= base_url("owner/Claporan/lap_out_total_perumah_form"); ?>">Detail Per perumahan</a> -->
+            </div>
+        </div>
+    </li>
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#lap_keluar"
@@ -68,13 +84,21 @@
         <div id="lap_keluar" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-                <a class="collapse-item" href="<?= base_url("owner/Claporan/lap_out_rumah_per_perum_form"); ?>">Rumah Per Perum</a>
+                <a class="collapse-item" href="<?= base_url("owner/Claporan/lap_out_per_perumahan"); ?>">UMUM Per Perumahan</a>
+                <a class="collapse-item" href="<?= base_url("owner/Claporan/lap_out_rumah_per_perumahan"); ?>">RUMAH Per Perumahan</a>
+                <a class="collapse-item" href="<?= base_url("owner/Claporan/lap_out_total_perumah_form"); ?>">Detail Per Rumah</a>
+                <div class="dropdown-divider"></div>
                 <a class="collapse-item" href="<?= base_url("owner/Claporan/lap_out_umum_per_perum_form"); ?>">Pengeluaran Umum</a>
                 <!-- <a class="collapse-item" href="cards.html">Pengeluaran Umum</a> -->
             </div>
         </div>
     </li>
 
+    <li class="nav-item ">
+        <a class="nav-link" href="<?= base_url("owner/Claporan/lap_laba_rugi_form"); ?>">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Lap Laba Rugi</span></a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
@@ -98,3 +122,4 @@
 
 </ul>
 <!-- End of Sidebar -->
+<link rel="icon" type="image/png" href="<?= base_url('assets/images/favicon_04.png') ?>">

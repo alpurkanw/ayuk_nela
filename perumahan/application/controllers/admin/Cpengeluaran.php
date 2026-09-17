@@ -111,7 +111,13 @@ class Cpengeluaran extends MY_Admin_Controller
         if ($insert) {
             $this->session->set_flashdata(
                 'pesan',
-                '<div class="alert alert-success">Transaksi Pengeluaran sebesar **Rp ' . number_format($nominal) . '** berhasil dicatat!</div>'
+                '<div class="alert alert-success" style="line-height:1.8; font-size:15px; padding:16px 18px; border-left:5px solid #1cc88a; background:#e8fff6; color:#1f2d3d;">' .
+                    '<div><strong>Transaksi sebesar :</strong> Rp ' . number_format($nominal, 0, ',', '.') . '</div>' .
+                    '<div><strong>Kategori pengeluaran :</strong> ' . $jenis_harga[1] . '</div>' .
+                    '<div><strong>Peruntukan :</strong> RUMAH</div>' .
+                    '<div><strong>Perumahan :</strong> ' . $perumahan[1] . '</div>' .
+                    '<div><strong>Rumah :</strong> ' . $rumah[1] . '</div>' .
+                    '</div>'
             );
         } else {
             // Gagal menyimpan
@@ -172,7 +178,12 @@ class Cpengeluaran extends MY_Admin_Controller
         if ($insert) {
             $this->session->set_flashdata(
                 'pesan',
-                '<div class="alert alert-success">Transaksi Pengeluaran sebesar **Rp ' . number_format($nominal) . '** berhasil dicatat!</div>'
+                '<div class="alert alert-success" style="line-height:1.8; font-size:15px; padding:16px 18px; border-left:5px solid #1cc88a; background:#e8fff6; color:#1f2d3d;">' .
+                    '<div><strong>Transaksi sebesar :</strong> Rp ' . number_format($nominal, 0, ',', '.') . '</div>' .
+                    '<div><strong>Kategori pengeluaran :</strong> ' . $jenis_harga[1] . '</div>' .
+                    '<div><strong>Peruntukan :</strong> UMUM</div>' .
+                    '<div><strong>Pada perumahan :</strong> ' . $perumahan[1] . '</div>' .
+                    '</div>'
             );
         } else {
             // Gagal menyimpan

@@ -9,7 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>Bintang Lacita Group</title>
+    <link rel="icon" type="image/png" href="<?= base_url('assets/images/favicon_04.png') ?>">
+
 
     <!-- Custom fonts for this template -->
     <link href="<?= base_url("assets/adminsb/"); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -57,8 +59,16 @@
                         </div>
                         <div class="card-body p-2">
 
-                            <!-- <h6>Jenis Transaksi : Uang Keluar | Kategori :                            </h6> -->
-
+                            <form id="formGoToDetail" action="<?= base_url('owner/Claporan/lap_out_total_perumah_view'); ?>" method="post">
+                                <input type="hidden" name="id_rumah" id="id_rumah_hidden" value="">
+                            </form>
+                            <div class="mb-3">
+                                <span class="mr-4"><strong>Perumahan:</strong> <?= htmlspecialchars($nama_perumahan); ?></span>
+                                <span class="mr-4"><strong>Tanggal Laporan:</strong> <?= htmlspecialchars($report_date); ?></span>
+                            </div>
+                            <small>
+                                * Klik pada baris untuk melihat detail pengeluaran per kategori di rumah tersebut.
+                            </small>
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover table-bordered" id="laporanPenjualanKeluar">
                                     <thead class="table-dark">
@@ -77,17 +87,21 @@
                                             <?php $no = 1; ?>
                                             <?php $grand_total = 0; ?>
                                             <?php foreach ($list_rumah as $data) : ?>
-                                                <tr>
+                                                <?php $grand_total += (float) $data->total_pengeluaran; ?>
+                                                <tr class="clickable-row" data-id-rumah="<?= $data->id; ?>">
                                                     <td><?= $no++; ?></td>
                                                     <td><?= htmlspecialchars($data->nama_perum); ?></td>
                                                     <td><?= htmlspecialchars($data->norumah); ?></td>
-                                                    <td>Rp <?= number_format($data->total_pengeluaran); ?></td>
-
+                                                    <td class="text-right">Rp <?= number_format($data->total_pengeluaran); ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
+                                            <tr class="table-secondary font-weight-bold">
+                                                <td colspan="3" class="text-right">Total Pengeluaran</td>
+                                                <td class="text-right">Rp <?= number_format($grand_total); ?></td>
+                                            </tr>
                                         <?php else : ?>
                                             <tr>
-                                                <td colspan="9" class="text-center text-muted">Tidak ada data Pengeluaran untuk periode ini.</td>
+                                                <td colspan="4" class="text-center text-muted">Tidak ada data Pengeluaran untuk periode ini.</td>
                                             </tr>
                                         <?php endif; ?>
                                     </tbody>
@@ -160,7 +174,16 @@
 
     <!-- Page level custom scripts -->
     <script src="<?= base_url("assets/adminsb/"); ?>js/demo/datatables-demo.js"></script>
-
+    <script>
+        $(document).ready(function() {
+            $('.clickable-row').css('cursor', 'pointer');
+            $('.clickable-row').on('click', function() {
+                var idRumah = $(this).data('id-rumah');
+                $('#id_rumah_hidden').val(idRumah);
+                $('#formGoToDetail').submit();
+            });
+        });
+    </script>
 </body>
 
 </html>

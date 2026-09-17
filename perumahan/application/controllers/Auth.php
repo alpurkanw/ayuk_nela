@@ -64,7 +64,8 @@ class Auth extends CI_Controller
 
             $user = $this->db->get()->row_array();
 
-            // print_r($user["iduser"]);
+            // print_r($pass);
+            // echo "hasil query : <br>";
             // echo $this->db->error()["message"];
             // return;
 

@@ -90,6 +90,15 @@
 
             <div class="col-6 col-sm-4 col-md-3 col-lg-2">
                 <div class="ratio ratio-1x1 shadow-sm rounded-3 overflow-hidden">
+                    <a href="<?= base_url('satgas/Laporan/cetak_ulang'); ?>" class="btn menu-button d-flex flex-column align-items-center justify-content-center h-100 w-100">
+                        <i class="bi bi-list-columns-reverse menu-icon"></i> <strong class="mb-1">Cetak Ulang</strong>
+                        <small>Untuk Cetak Ulang Nota</small>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="ratio ratio-1x1 shadow-sm rounded-3 overflow-hidden">
                     <a href="<?= base_url('satgas/Sopir/tambah'); ?>" class="btn menu-button d-flex flex-column align-items-center justify-content-center h-100 w-100">
                         <i class="bi bi-person-plus-fill menu-icon"></i> <strong class="mb-1">Daftar Sopir</strong>
                         <small>Registrasi Pengemudi</small>

@@ -1,4 +1,7 @@
 <?php
+// Zona waktu tunggal untuk seluruh aplikasi (controller, view, laporan, dan helper PHP).
+date_default_timezone_set('Asia/Jakarta');
+
 /**
  * CodeIgniter
  *

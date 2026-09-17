@@ -21,7 +21,7 @@ class M_perumahan extends CI_Model
     public function getAllPerum()
     {
         // return $this->db->get($this->table)->result_array();
-        $sql = " select * from tm_perumahan ";
+        $sql = " select * from tm_perumahan order by nama asc ";
 
         return $this->db->query($sql);
     }
@@ -122,6 +122,7 @@ class M_perumahan extends CI_Model
         $sql = " select a.*,a.id id_rumah, b.*, b.id id_perum from tm_rumah a
         left join tm_perumahan b on b.id = a.id_perumahan
         where a.id_perumahan=$id_perumahan
+        order by a.norumah asc
         ";
 
         return $this->db->query($sql);
